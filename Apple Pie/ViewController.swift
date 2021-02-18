@@ -116,11 +116,23 @@ class ViewController: UIViewController {
     
     func updateUI() {
         let movesRemaining = currentGame.incorrectMovesRemaining
-        let imageName = "Tree \(movesRemaining < 8 ? movesRemaining : 7)"
+        let imageNumber = movesRemaining < 0 ? 0 : movesRemaining < 8 ? movesRemaining : 7
+        let imageName = "Tree \(imageNumber)"
         treeImageView.image = UIImage(named: imageName)
+        updateCorrectWordLabel()
         scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
         
         
+        
+    }
+    
+    func updateCorrectWordLabel() {
+        
+        var displayWord = [String]()
+        for letter in currentGame.guessedWord {
+            displayWord.append(String(letter))
+        }
+        correctWordLabel.text = displayWord.joined(separator: " ")
     }
     
     override func viewDidLoad() {
@@ -132,6 +144,9 @@ class ViewController: UIViewController {
     
     @IBAction func letterButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
+        let letter = sender.title(for: .normal)!
+        currentGame.playerGuessed(letter: Character(letter))
+        updateUI()
     }
     
 }
