@@ -102,16 +102,46 @@ class ViewController: UIViewController {
         "Шэньян",
         "Эр-Рияд",
         "Янгон"
-    ]
-    var totalWins = 0;
-    var totalLosses = 0;
+    ].shuffled()
+    
+    var totalWins = 0 {
+        didSet {
+            newRound()
+        }
+    }
+    var totalLosses = 0 {
+        didSet {
+            newRound()
+        }
+    }
     
     //MARK: - Methods
     
+    func enableButtons() {
+        for button in letterButtons {
+            button.isEnabled = true
+        }
+    }
+    
+    func disableButtons() {
+        for button in letterButtons {
+            button.isEnabled = false
+        }
+    }
+    
     func newRound() {
-        let newWord = listOfWords.removeFirst()
-        currentGame =  Game (word: newWord, incorrectMovesRemaining: incorrectMovesAllowed)
-        updateUI()
+
+        if !listOfWords.isEmpty {
+            let newWord = listOfWords.removeFirst()
+            currentGame =  Game (word: newWord, incorrectMovesRemaining: incorrectMovesAllowed)
+            enableButtons()
+            updateUI()
+        } else {
+            disableButtons()
+            updateUITotalWin()
+        }
+
+      
     }
     
     func updateUI() {
@@ -126,13 +156,36 @@ class ViewController: UIViewController {
         
     }
     
-    func updateCorrectWordLabel() {
+    func updateUITotalWin() {
+        let imageNumber = 7
+        let imageName = "Tree \(imageNumber)"
+        treeImageView.image = UIImage(named: imageName)
+        correctWordLabel.text = "ПОЛНАЯ ПОБЕДА!"
+        scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
         
+        
+        
+    }
+    
+    func updateCorrectWordLabel() {
         var displayWord = [String]()
         for letter in currentGame.guessedWord {
             displayWord.append(String(letter))
         }
         correctWordLabel.text = displayWord.joined(separator: " ")
+    }
+    
+    
+    func updateState() {
+        
+        if currentGame.incorrectMovesRemaining < 1 {
+            totalLosses += 1
+        } else if currentGame.guessedWord == currentGame.word {
+            totalWins += 1
+        } else {
+                updateUI()
+            }
+        
     }
     
     override func viewDidLoad() {
@@ -146,7 +199,7 @@ class ViewController: UIViewController {
         sender.isEnabled = false
         let letter = sender.title(for: .normal)!
         currentGame.playerGuessed(letter: Character(letter))
-        updateUI()
+        updateState()
     }
     
 }
