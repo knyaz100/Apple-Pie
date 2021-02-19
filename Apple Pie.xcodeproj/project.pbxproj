@@ -14,6 +14,9 @@
 		D979E3DF25DEC8BD00896730 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D979E3DE25DEC8BD00896730 /* Assets.xcassets */; };
 		D979E3E225DEC8BD00896730 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D979E3E025DEC8BD00896730 /* LaunchScreen.storyboard */; };
 		D979E3EC25DEE88900896730 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D979E3EB25DEE88900896730 /* Game.swift */; };
+		D9DE738A25E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.26.19.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE738725E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.26.19.png */; };
+		D9DE738B25E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.00.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE738825E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.00.png */; };
+		D9DE738C25E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.18.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE738925E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.18.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		D979E3E125DEC8BD00896730 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D979E3E325DEC8BD00896730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D979E3EB25DEE88900896730 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		D9DE738725E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.26.19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.26.19.png"; sourceTree = "<group>"; };
+		D9DE738825E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.00.png"; sourceTree = "<group>"; };
+		D9DE738925E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.18.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 		D979E3D425DEC8BA00896730 /* Apple Pie */ = {
 			isa = PBXGroup;
 			children = (
+				D9DE737E25E056C4005C8C9C /* Screenshots */,
 				D979E3D525DEC8BA00896730 /* AppDelegate.swift */,
 				D979E3DE25DEC8BD00896730 /* Assets.xcassets */,
 				D979E3EB25DEE88900896730 /* Game.swift */,
@@ -68,6 +75,16 @@
 				D979E3E325DEC8BD00896730 /* Info.plist */,
 			);
 			path = "Apple Pie";
+			sourceTree = "<group>";
+		};
+		D9DE737E25E056C4005C8C9C /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				D9DE738725E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.26.19.png */,
+				D9DE738825E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.00.png */,
+				D9DE738925E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.18.png */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +147,9 @@
 				D979E3E225DEC8BD00896730 /* LaunchScreen.storyboard in Resources */,
 				D979E3DF25DEC8BD00896730 /* Assets.xcassets in Resources */,
 				D979E3DD25DEC8BA00896730 /* Main.storyboard in Resources */,
+				D9DE738C25E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.18.png in Resources */,
+				D9DE738B25E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.27.00.png in Resources */,
+				D9DE738A25E057A5005C8C9C /* Simulator Screen Shot - iPhone 8 Plus - 2021-02-19 at 23.26.19.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

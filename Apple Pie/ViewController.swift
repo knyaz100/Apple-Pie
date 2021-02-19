@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var letterButtons: [UIButton]!
     @IBOutlet weak var correctWordLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var wordMeaningLabel: UILabel!
     
 
     
@@ -21,97 +22,63 @@ class ViewController: UIViewController {
     var currentGame: Game!
     let incorrectMovesAllowed = 7
     var listOfWords = [
-        "Александрия",
-        "Атланта",
-        "Ахмедабад",
-        "Багдад",
-        "Бангалор",
-        "Бангкок",
-        "Барселона",
-        "Белу-Оризонти",
-        "Богота",
-        "Буэнос-Айрес",
-        "Вашингтон",
-        "Гвадалахара",
-        "Гонконг",
-        "Гуанчжоу",
-        "Дакка",
-        "Даллас",
-        "Далянь",
-        "Дар-эс-Салам",
-        "Дели",
-        "Джакарта",
-        "Дунгуань",
-        "Йоханнесбург",
-        "Каир",
-        "Калькутта",
-        "Карачи",
-        "Киншаса",
-        "Куала Лумпур",
-        "Лагос",
-        "Лахор",
-        "Лима",
-        "Лондон",
-        "Лос-Анджелес",
-        "Луанда",
-        "Мадрид",
-        "Майами",
-        "Манила",
-        "Мехико",
-        "Москва",
-        "Мумбаи",
-        "Нагоя",
-        "Нанкин",
-        "Нью-Йорк",
-        "Осака",
-        "Париж",
-        "Пекин",
-        "Пуна",
-        "Рио-де-Жанейро",
-        "Сан-Паулу",
-        "Санкт-Петербург",
-        "Сантьяго",
-        "Сеул",
-        "Сиань",
-        "Сингапур",
-        "Стамбул",
-        "Сурат",
-        "Сучжоу",
-        "Тегеран",
-        "Токио",
-        "Торонто",
-        "Тяньцзинь",
-        "Ухань",
-        "Филадельфия",
-        "Фошань",
-        "Фукуока",
-        "Хайдарабад",
-        "Ханчжоу",
-        "Харбин",
-        "Хартум",
-        "Хошимин",
-        "Хьюстон",
-        "Цзинань",
-        "Циндао",
-        "Ченнай",
-        "Чикаго",
-        "Чунцин",
-        "Чэнду",
-        "Шанхай",
-        "Шэньчжэнь",
-        "Шэньян",
-        "Эр-Рияд",
-        "Янгон"
-    ].shuffled()
+        "СКРУПУЛЁЗНЫЙ" ,
+        "ПОЧЕТНИК" ,
+        "БАСУРМАН" ,
+        "АББЕРАЦИЯ" ,
+        "ПЕРДИМОНОКЛЬ" ,
+        "ТРАНСЦЕНДЕНТНЫЙ" ,
+        "ОСТРАКИЗМ" ,
+        "ПАРИТЕТ" ,
+        "АПРОБИРОВАТЬ" ,
+        "КЛЕВРЕТ" ,
+        "ДЕСТРУКТИВНЫЙ" ,
+        "АННЕКСИЯ" ,
+        "МАТРИМОНИАЛЬНЫЙ" ,
+        "КАЙМАН" ,
+        "ПРОФОРМА" ,
+        "АПОЛОГЕТ" ,
+        "ЭКЗАЛЬТРОВАННЫЙ" ,
+        "СИНОПСИС" ,
+        "ДИФФАМАЦИЯ"
+    ]
+    
+    var listOfMeanings = [
+        "Дотошный" ,
+        "Поклонник" ,
+        "Иноземец и иновер" ,
+        "Отклонений" ,
+        "Нечто удивляющее" ,
+        "Непозноваемый" ,
+        "Изгнание" ,
+        "Равенство" ,
+        "Официально утвердить" ,
+        "Приспешник" ,
+        "Разрушительный" ,
+        "Насильственное присоединение" ,
+        "Брачный" ,
+        "Крокодил" ,
+        "Формальность" ,
+        "Сторонник" ,
+        "Восторженный" ,
+        "Обозрение" ,
+        "Клевета" ,
+    ]
+    
+    
+    var wordMeaningsDic: Dictionary <String, String> = [:]
+    var isRoundInProgress = false
     
     var totalWins = 0 {
         didSet {
-            newRound()
+            isRoundInProgress = false
+            updateUIRoundEnd(win: true)
         }
     }
     var totalLosses = 0 {
         didSet {
-            newRound()
+            isRoundInProgress = false
+            updateUIRoundEnd(win: false)
         }
     }
     
@@ -132,11 +99,14 @@ class ViewController: UIViewController {
     func newRound() {
 
         if !listOfWords.isEmpty {
+            listOfWords = listOfWords.shuffled()
             let newWord = listOfWords.removeFirst()
             currentGame =  Game (word: newWord, incorrectMovesRemaining: incorrectMovesAllowed)
+            isRoundInProgress = true
             enableButtons()
             updateUI()
         } else {
+            isRoundInProgress = false
             disableButtons()
             updateUITotalWin()
         }
@@ -151,7 +121,7 @@ class ViewController: UIViewController {
         treeImageView.image = UIImage(named: imageName)
         updateCorrectWordLabel()
         scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
-        
+        wordMeaningLabel.text = ""
         
         
     }
@@ -160,11 +130,32 @@ class ViewController: UIViewController {
         let imageNumber = 7
         let imageName = "Tree \(imageNumber)"
         treeImageView.image = UIImage(named: imageName)
-        correctWordLabel.text = "ПОЛНАЯ ПОБЕДА!"
+        if(totalWins > totalLosses) {
+            correctWordLabel.textColor = .systemRed
+            correctWordLabel.text = "П О Л Н А Я  П О Б Е Д А!"
+        } else {
+            correctWordLabel.textColor = .systemPurple
+            correctWordLabel.text = "век живи - век учись!"
+        }
+        
+        wordMeaningLabel.text = ""
         scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
-        
-        
-        
+    
+    }
+    
+    func updateUIRoundEnd(win: Bool) {
+        //let imageNumber = 7
+        //let imageName = "Tree \(imageNumber)"
+        //treeImageView.image = UIImage(named: imageName)
+        if (win) {
+            correctWordLabel.textColor = .systemGreen
+        } else {
+            correctWordLabel.textColor = .systemRed
+        }
+        correctWordLabel.text = currentGame.word
+        scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
+        wordMeaningLabel.textColor = .systemGray
+        wordMeaningLabel.text = wordMeaningsDic[currentGame.word]?.lowercased()
     }
     
     func updateCorrectWordLabel() {
@@ -172,6 +163,7 @@ class ViewController: UIViewController {
         for letter in currentGame.guessedWord {
             displayWord.append(String(letter))
         }
+        correctWordLabel.textColor = .none
         correctWordLabel.text = displayWord.joined(separator: " ")
     }
     
@@ -190,6 +182,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // add a tap gesture recognizer
+        
+        let correctWordLabelTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleEndRoundTap(_:)))
+        let treeImageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleEndRoundTap(_:)))
+        correctWordLabel.isUserInteractionEnabled = true
+        correctWordLabel.addGestureRecognizer(correctWordLabelTapRecognizer)
+        treeImageView.isUserInteractionEnabled = true
+        treeImageView.addGestureRecognizer(treeImageTapRecognizer)
+        let seq = zip(listOfWords, listOfMeanings)
+        wordMeaningsDic = Dictionary(uniqueKeysWithValues: seq)
         newRound()
     }
     
@@ -201,6 +203,18 @@ class ViewController: UIViewController {
         currentGame.playerGuessed(letter: Character(letter))
         updateState()
     }
+    
+    @objc
+    func handleEndRoundTap(_ gestureRecognize: UIGestureRecognizer) {
+        
+        //print(#line, "TAP")
+        
+        if(!isRoundInProgress) {
+            newRound()
+        }
+    
+    }
+    
     
 }
 
