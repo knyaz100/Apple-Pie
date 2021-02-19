@@ -28,9 +28,7 @@ struct Game {
         }
         return wordToShow
     }
-        
-        
-       
+    
     
     mutating func playerGuessed(letter: Character) {
         let lowercasedLetter = Character(letter.lowercased())
