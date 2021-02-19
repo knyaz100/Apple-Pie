@@ -1,5 +1,5 @@
 # Apple-Pie
-Simple Guess Word ( AKA Apple Pie) game was written as pard on Moscow Digital Academy SWIFT courses
+Simple Guess Word ( AKA Apple Pie) game was written as part on Moscow Digital Academy SWIFT courses
 
 ## Screenshots
 
