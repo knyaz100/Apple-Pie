@@ -14,9 +14,9 @@
 		D979E3DF25DEC8BD00896730 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D979E3DE25DEC8BD00896730 /* Assets.xcassets */; };
 		D979E3E225DEC8BD00896730 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D979E3E025DEC8BD00896730 /* LaunchScreen.storyboard */; };
 		D979E3EC25DEE88900896730 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D979E3EB25DEE88900896730 /* Game.swift */; };
-		D9DE739225E05B49005C8C9C /* Simulator Screen Shot 03.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE738F25E05B49005C8C9C /* Simulator Screen Shot 03.png */; };
-		D9DE739325E05B49005C8C9C /* Simulator Screen Shot 02.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE739025E05B49005C8C9C /* Simulator Screen Shot 02.png */; };
-		D9DE739425E05B49005C8C9C /* Simulator Screen Shot 01.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE739125E05B49005C8C9C /* Simulator Screen Shot 01.png */; };
+		D9DE739A25E05E36005C8C9C /* Screenshot 01.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE739725E05E36005C8C9C /* Screenshot 01.png */; };
+		D9DE739B25E05E36005C8C9C /* Screenshot 02.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE739825E05E36005C8C9C /* Screenshot 02.png */; };
+		D9DE739C25E05E36005C8C9C /* Screenshot 03.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DE739925E05E36005C8C9C /* Screenshot 03.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +29,9 @@
 		D979E3E125DEC8BD00896730 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D979E3E325DEC8BD00896730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D979E3EB25DEE88900896730 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		D9DE738F25E05B49005C8C9C /* Simulator Screen Shot 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot 03.png"; sourceTree = "<group>"; };
-		D9DE739025E05B49005C8C9C /* Simulator Screen Shot 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot 02.png"; sourceTree = "<group>"; };
-		D9DE739125E05B49005C8C9C /* Simulator Screen Shot 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot 01.png"; sourceTree = "<group>"; };
+		D9DE739725E05E36005C8C9C /* Screenshot 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 01.png"; sourceTree = "<group>"; };
+		D9DE739825E05E36005C8C9C /* Screenshot 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 02.png"; sourceTree = "<group>"; };
+		D9DE739925E05E36005C8C9C /* Screenshot 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 03.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +80,9 @@
 		D9DE737E25E056C4005C8C9C /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				D9DE739125E05B49005C8C9C /* Simulator Screen Shot 01.png */,
-				D9DE739025E05B49005C8C9C /* Simulator Screen Shot 02.png */,
-				D9DE738F25E05B49005C8C9C /* Simulator Screen Shot 03.png */,
+				D9DE739725E05E36005C8C9C /* Screenshot 01.png */,
+				D9DE739825E05E36005C8C9C /* Screenshot 02.png */,
+				D9DE739925E05E36005C8C9C /* Screenshot 03.png */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -144,12 +144,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9DE739225E05B49005C8C9C /* Simulator Screen Shot 03.png in Resources */,
+				D9DE739B25E05E36005C8C9C /* Screenshot 02.png in Resources */,
+				D9DE739C25E05E36005C8C9C /* Screenshot 03.png in Resources */,
 				D979E3E225DEC8BD00896730 /* LaunchScreen.storyboard in Resources */,
 				D979E3DF25DEC8BD00896730 /* Assets.xcassets in Resources */,
 				D979E3DD25DEC8BA00896730 /* Main.storyboard in Resources */,
-				D9DE739425E05B49005C8C9C /* Simulator Screen Shot 01.png in Resources */,
-				D9DE739325E05B49005C8C9C /* Simulator Screen Shot 02.png in Resources */,
+				D9DE739A25E05E36005C8C9C /* Screenshot 01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

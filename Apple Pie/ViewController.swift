@@ -67,18 +67,21 @@ class ViewController: UIViewController {
     
     
     var wordMeaningsDic: Dictionary <String, String> = [:]
+    var initialWordsCount = 0
     var isRoundInProgress = false
     
     var totalWins = 0 {
         didSet {
             isRoundInProgress = false
             updateUIRoundEnd(win: true)
+            disableButtons()
         }
     }
     var totalLosses = 0 {
         didSet {
             isRoundInProgress = false
             updateUIRoundEnd(win: false)
+            disableButtons()
         }
     }
     
@@ -108,54 +111,56 @@ class ViewController: UIViewController {
         } else {
             isRoundInProgress = false
             disableButtons()
-            updateUITotalWin()
+            updateUITotalEnd()
         }
-
-      
+  
     }
     
     func updateUI() {
         let movesRemaining = currentGame.incorrectMovesRemaining
-        let imageNumber = movesRemaining < 0 ? 0 : movesRemaining < 8 ? movesRemaining : 7
+        let imageNumber = movesRemaining < 0 ? 0 : movesRemaining <= incorrectMovesAllowed ? movesRemaining : incorrectMovesAllowed
         let imageName = "Tree \(imageNumber)"
         treeImageView.image = UIImage(named: imageName)
         updateCorrectWordLabel()
-        scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
-        wordMeaningLabel.text = ""
-        
+        updateScoreLabel()
+        wordMeaningLabel.textColor = .systemGray
+        wordMeaningLabel.text = wordMeaningsDic[currentGame.word]?.lowercased()
         
     }
     
-    func updateUITotalWin() {
+    func updateUITotalEnd() {
         let imageNumber = 7
         let imageName = "Tree \(imageNumber)"
         treeImageView.image = UIImage(named: imageName)
-        if(totalWins > totalLosses) {
+        let percentOfWins: Int = 100*(totalWins)/initialWordsCount
+        
+        if( percentOfWins > 50) {
             correctWordLabel.textColor = .systemRed
-            correctWordLabel.text = "П О Л Н А Я  П О Б Е Д А!"
+            correctWordLabel.text = getDisplayWord(word: "ПОБЕДА")
         } else {
             correctWordLabel.textColor = .systemPurple
             correctWordLabel.text = "век живи - век учись!"
         }
-        
-        wordMeaningLabel.text = ""
-        scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
-    
+        wordMeaningLabel.text = "угадано \(percentOfWins)% слов"
+        //wordMeaningLabel.text = "игра окончена, большое спасибо!"
     }
     
     func updateUIRoundEnd(win: Bool) {
-        //let imageNumber = 7
-        //let imageName = "Tree \(imageNumber)"
-        //treeImageView.image = UIImage(named: imageName)
+        
         if (win) {
             correctWordLabel.textColor = .systemGreen
         } else {
             correctWordLabel.textColor = .systemRed
         }
-        correctWordLabel.text = currentGame.word
-        scoreLabel.text = "Выигрыши: \(totalWins)  Проигрыши: \(totalLosses)"
-        wordMeaningLabel.textColor = .systemGray
+        correctWordLabel.text = getDisplayWord(word: currentGame.word)
+        updateScoreLabel()
+        
         wordMeaningLabel.text = wordMeaningsDic[currentGame.word]?.lowercased()
+    }
+    
+    func updateScoreLabel() {
+        scoreLabel.textColor = .systemBlue
+        scoreLabel.text = "Угадано: \(totalWins)  Не угадано: \(totalLosses) Всего: \(totalWins+totalLosses) из \(initialWordsCount)"
     }
     
     func updateCorrectWordLabel() {
@@ -164,9 +169,17 @@ class ViewController: UIViewController {
             displayWord.append(String(letter))
         }
         correctWordLabel.textColor = .none
-        correctWordLabel.text = displayWord.joined(separator: " ")
+        correctWordLabel.text = getDisplayWord(word: currentGame.guessedWord)
     }
     
+    func getDisplayWord(word: String) -> String {
+        
+        var displayWord = [String]()
+        for letter in word {
+            displayWord.append(String(letter))
+        }
+        return displayWord.joined(separator: " ")
+    }
     
     func updateState() {
         
@@ -192,6 +205,7 @@ class ViewController: UIViewController {
         treeImageView.addGestureRecognizer(treeImageTapRecognizer)
         let seq = zip(listOfWords, listOfMeanings)
         wordMeaningsDic = Dictionary(uniqueKeysWithValues: seq)
+        initialWordsCount = listOfWords.count
         newRound()
     }
     
@@ -206,15 +220,9 @@ class ViewController: UIViewController {
     
     @objc
     func handleEndRoundTap(_ gestureRecognize: UIGestureRecognizer) {
-        
-        //print(#line, "TAP")
-        
         if(!isRoundInProgress) {
             newRound()
         }
-    
     }
-    
-    
 }
 
